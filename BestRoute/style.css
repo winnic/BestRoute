@@ -1,0 +1,3 @@
+
+body:hover button.edit{    display: block; position:absolute;z-index:100;
+}
