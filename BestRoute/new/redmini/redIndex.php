@@ -161,7 +161,16 @@
                 });
             globalSPmarker.setPosition(results[0].geometry.location);
             console.log(results);
-            url="red_dataLib.php?action=theNearest&lat="+results[0].geometry.location.pb+"&longitube="+results[0].geometry.location.qb;
+			count=0;
+			lat_lng=results[0].geometry.location;
+			for(tmp in lat_lng){
+				count++;
+				if(count==1){
+					url="red_dataLib.php?action=theNearest&lat="+lat_lng[tmp];
+				}else if(count==2){
+					url+="&longitube="+lat_lng[tmp];
+				}
+			}
 			console.log(url);
             AjaxCall("",url,function (response){ 
 				console.log(response);
@@ -173,10 +182,16 @@
             
             google.maps.event.addListener(globalSPmarker, 'dragend', function (){
                 console.log(globalSPmarker.getPosition());
-                url="red_dataLib.php?action=theNearest&lat="+globalSPmarker.getPosition().pb+"&longitube="+globalSPmarker.getPosition().qb;
-                            console.log("start");
-            console.log(url);
-            console.log("end");
+								count=0;
+				lat_lng=globalSPmarker.getPosition();
+				for(tmp in lat_lng){
+					count++;
+					if(count==1){
+						url="red_dataLib.php?action=theNearest&lat="+lat_lng[tmp];
+					}else if(count==2){
+						url+="&longitube="+lat_lng[tmp];
+					}
+				}
                 AjaxCall("",url,function (response){ 
                     window.dynamicSP=new Object();
                     dynamicSP=(JSON.parse(response));
@@ -192,7 +207,17 @@
                     draggable:true,
                 });
             globalDPmarker.setPosition(results[0].geometry.location);  
-            url="red_dataLib.php?action=theNearest&lat="+results[0].geometry.location.pb+"&longitube="+results[0].geometry.location.qb;
+			count=0;
+			lat_lng=results[0].geometry.location;
+			for(tmp in lat_lng){
+				count++;
+				if(count==1){
+					url="red_dataLib.php?action=theNearest&lat="+lat_lng[tmp];
+				}else if(count==2){
+					url+="&longitube="+lat_lng[tmp];
+				}
+			}
+
             AjaxCall("",url,function (response){ 
                 window.dynamicDP=new Object();
                 dynamicDP=(JSON.parse(response));
@@ -202,7 +227,16 @@
             
             google.maps.event.addListener(globalDPmarker, 'dragend', function (){
                 console.log(globalDPmarker.getPosition());
-                url="red_dataLib.php?action=theNearest&lat="+globalDPmarker.getPosition().pb+"&longitube="+globalDPmarker.getPosition().qb;
+				count=0;
+				lat_lng=globalDPmarker.getPosition();
+				for(tmp in lat_lng){
+					count++;
+					if(count==1){
+						url="red_dataLib.php?action=theNearest&lat="+lat_lng[tmp];
+					}else if(count==2){
+						url+="&longitube="+lat_lng[tmp];
+					}
+				}
                 AjaxCall("",url,function (response){ 
                 window.dynamicDP=new Object();
                 dynamicDP=(JSON.parse(response));
